@@ -7,8 +7,8 @@
 * clone project
 
 ```
-git clone xxxxxx
-cd xxxx
+git clone https://github.com/boyone/git-bisect_and_revert.git
+cd git-bisect_and_revert
 ```
 
 * ดูไฟล์ จะพบว่าจะเรียงลำดับ a, b, d, e, f
@@ -53,11 +53,25 @@ git bisect good 6573e8f
 ```
 
 ```
-Bisecting: 1 revision left to test after this (roughly 1 step)
-[430ee0063fb9d02955052956f4d0bb7cf78811b6] Remove c
+Bisecting: 2 revisions left to test after this (roughly 2 steps)
+[108b663db9c4abd929ba82746f75bd582114e816] Create e file.
 
 // git bisect จะขยับตัวเองไปใน commit ถัดไป 
 //เพื่อให้เราตรวจดูว่ามันทำงานถูกหรือผิด ในที่นี้คือ หาไฟล์ c
+```
+
+* ตรวจแล้วบอก git bisect ว่า good / bad
+
+```
+ls
+a b d e // ไฟล์ c ไม่มี
+
+git bisect bad
+```
+
+```
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[430ee0063fb9d02955052956f4d0bb7cf78811b6] Remove c
 ```
 
 * ตรวจแล้วบอก git bisect ว่า good / bad
@@ -113,7 +127,7 @@ git revert 430ee0063fb9d02955052956f4d0bb7cf78811b6
 
 ```
 ls
-a b c d e f
+README.md a b c d e f
 ```
 
 ref: [https://git-scm.com/docs/git-bisect](https://git-scm.com/docs/git-bisect)
